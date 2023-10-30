@@ -122,6 +122,7 @@
             git
             vlc
             blender
+            docker-compose
             flameshot
             (vscode-with-extensions.override {
                 # When the extension is already available in the default extensions set.
