@@ -6,4 +6,4 @@
 [github]
 	user = hayden-donnelly
 [core]
-    editor = micro
+    editor = vim
