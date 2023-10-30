@@ -16,6 +16,12 @@ in
         home.stateVersion = "23.05";
         home.file = {
             ".config/git/config".source = ./sources/gitconfig.txt;
+            ".config/Code/User/settings.json".source = ./sources/vscode-settings.txt;
         };
     };
+
+    #programs.vscode = {
+    #    enable = true;
+    #    userSettings = builtins.fromJSON (builtins.readFile "./sources/vscode-settings.json");
+    #};
 }
