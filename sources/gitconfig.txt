@@ -5,3 +5,5 @@
 	defaultBranch = main
 [github]
 	user = hayden-donnelly
+[core]
+    editor = micro
