@@ -124,6 +124,7 @@
             firefox
             kate
             git
+            vim
             vlc
             blender
             docker-compose
