@@ -4,6 +4,11 @@
 
 { config, pkgs, ... }:
 
+let
+    unstableTarball =
+        fetchTarball
+            https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+in
 {
     imports =
         [ # Include the results of the hardware scan.
@@ -72,6 +77,17 @@
     # Enable the X11 windowing system.
     services.xserver.enable = true;
 
+    # Allow unfree packages
+    nixpkgs.config = {
+        allowUnfree = true;
+        packageOverrides = pkgs: {
+            unstable = import unstableTarball {
+                config = config.nixpkgs.config;
+            };
+        };
+    };
+
+
     # Enable virtualisation for Docker.
     virtualisation.docker = {
         enable = true;
@@ -129,8 +145,7 @@
             blender
             docker-compose
             flameshot
-            (vscode-with-extensions.override {
-                # When the extension is already available in the default extensions set.
+            (unstable.vscode-with-extensions.override {
                 vscodeExtensions = with vscode-extensions; [
                     ms-python.python
                     ms-python.vscode-pylance
@@ -158,9 +173,6 @@
             })
         ];
     };
-
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
