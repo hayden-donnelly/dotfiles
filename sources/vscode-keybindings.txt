@@ -1,0 +1,11 @@
+[
+    {
+        "key": "escape",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "escape",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    }
+]
