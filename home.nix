@@ -17,6 +17,7 @@ in
         home.file = {
             ".config/git/config".source = ./sources/gitconfig.txt;
             ".config/Code/User/settings.json".source = ./sources/vscode-settings.txt;
+            ".config/Code/User/keybindings.json".source = ./sources/vscode-keybindings.txt;
         };
     };
 
