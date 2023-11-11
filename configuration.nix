@@ -38,6 +38,7 @@ in
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
+        extraPackages = with pkgs; [ intel-media-driver ];
     };
 
     # Configure X11.
@@ -45,7 +46,7 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        videoDrivers = ["intel" "nvidia"];
+        videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
