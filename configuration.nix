@@ -17,9 +17,21 @@ in
         ];
 
     # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.supportedFilesystems = [ "ntfs" ];
+    boot = {
+        loader = {
+            systemd-boot.enable = true;
+            efi.canTouchEfiVariables = true;
+        };
+        supportedFilesystems = [ "ntfs" ];
+    };
+
+    # Allow unfree packages
+    nixpkgs.config = {
+        allowUnfree = true;
+        packageOverrides = pkgs: {
+            unstable = import unstableTarball { config = config.nixpkgs.config; };
+        };
+    };
 
     # Enable OpenGL
     hardware.opengl = {
@@ -33,7 +45,7 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        videoDrivers = ["nvidia"];
+        videoDrivers = ["intel" "nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
@@ -64,6 +76,13 @@ in
 
         # Optionally, you may need to select the appropriate driver version for your specific GPU.
         package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        prime = {
+            sync.enable = true;
+            # Make sure to use the correct Bus ID values for your system!
+            intelBusId = "PCI:0:2:0";
+		    nvidiaBusId = "PCI:1:0:0";
+        };
     };
 
     networking.hostName = "nixos"; # Define your hostname.
@@ -81,18 +100,6 @@ in
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_CA.UTF-8";
-
-
-    # Allow unfree packages
-    nixpkgs.config = {
-        allowUnfree = true;
-        packageOverrides = pkgs: {
-            unstable = import unstableTarball {
-                config = config.nixpkgs.config;
-            };
-        };
-    };
-
 
     # Enable virtualisation for Docker.
     virtualisation.docker = {
