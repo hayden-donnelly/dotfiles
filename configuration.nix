@@ -28,8 +28,16 @@ in
         driSupport32Bit = true;
     };
 
-    # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = ["nvidia"];
+    # Configure X11.
+    services.xserver = {
+        enable = true;
+        layout = "us";
+        xkbVariant = "";
+        videoDrivers = ["nvidia"];
+        # Enable the KDE Plasma Desktop Environment.
+        displayManager.sddm.enable = true;
+        desktopManager.plasma5.enable = true;
+    };
 
     hardware.nvidia = {
         # Modesetting is required.
@@ -74,8 +82,6 @@ in
     # Select internationalisation properties.
     i18n.defaultLocale = "en_CA.UTF-8";
 
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
 
     # Allow unfree packages
     nixpkgs.config = {
@@ -92,16 +98,6 @@ in
     virtualisation.docker = {
         enable = true;
         enableNvidia = true;
-    };
-
-    # Enable the KDE Plasma Desktop Environment.
-    services.xserver.displayManager.sddm.enable = true;
-    services.xserver.desktopManager.plasma5.enable = true;
-
-    # Configure keymap in X11
-    services.xserver = {
-        layout = "us";
-        xkbVariant = "";
     };
 
     # Enable CUPS to print documents.
