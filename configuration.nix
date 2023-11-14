@@ -141,6 +141,7 @@ in
             kate
             git
             vim
+            neovim
             vlc
             blender
             docker-compose

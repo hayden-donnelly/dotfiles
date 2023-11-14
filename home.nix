@@ -17,12 +17,36 @@ in
         home.file = {
             ".config/git/config".source = ./sources/gitconfig.txt;
             ".config/Code/User/settings.json".source = ./sources/vscode-settings.txt;
-            ".config/Code/User/keybindings.json".source = ./sources/vscode-keybindings.txt;
+        };
+
+        programs.neovim = 
+        let
+            toLua = str: "lua << EOF\n${str}\nEOF\n";
+            toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+        in
+        {
+            enable = true;
+            viAlias = true;
+            vimAlias = true;
+            vimdiffAlias = true;
+            
+            plugins = with pkgs.vimPlugins; [
+                nvim-remote-container
+                {
+                    plugin = (nvim-treesitter.withPlugins (p: [
+                        p.tree-sitter-nix
+                        p.tree-sitter-vim
+                        p.tree-sitter-bash
+                        p.tree-sitter-lua
+                        p.tree-sitter-python
+                        p.tree-sitter-json
+                    ]));
+                    config = toLuaFile ./nvim/plugin/treesitter.lua;
+                }
+            ];
+            
+            extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
+        
         };
     };
-
-    #programs.vscode = {
-    #    enable = true;
-    #    userSettings = builtins.fromJSON (builtins.readFile "./sources/vscode-settings.json");
-    #};
 }
