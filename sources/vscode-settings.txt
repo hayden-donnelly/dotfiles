@@ -1,4 +1,7 @@
 {
     "workbench.colorTheme": "Default Dark Modern",
-    "line-length-checker.lineLength": 95
+    "line-length-checker.lineLength": 95,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
 }
