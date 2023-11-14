@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+with import <nixpkgs> { config = { allowUnfree = true; }; };
 let
     home-manager = builtins.fetchTarball {
         url = "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
@@ -16,7 +17,44 @@ in
         home.stateVersion = "23.05";
         home.file = {
             ".config/git/config".source = ./sources/gitconfig.txt;
-            ".config/Code/User/settings.json".source = ./sources/vscode-settings.txt;
+        };
+
+        programs.vscode = {
+            enable = true;
+            extensions = with pkgs.vscode-extensions; [
+                ms-python.python
+                ms-python.vscode-pylance
+                bbenoist.nix
+            ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+                {
+                    name = "tokyo-night";
+                    publisher = "enkia";
+                    version = "1.0.6";
+                    sha256 = "sha256-VWdUAU6SC7/dNDIOJmSGuIeffbwmcfeGhuSDmUE7Dig=";
+                }
+                {
+                    name = "line-length-checker-vscode";
+                    publisher = "SUPERTSY5";
+                    version = "1.0.0";
+                    sha256 = "sha256-yPgWWqaoYDXxj5sQuME5g3P+YVAt4iZEx0azRoiPZBg=";
+                }
+                {
+                    name = "copilot";
+                    publisher = "GitHub";
+                    version = "1.130.518";
+                    sha256 = "sha256-kHUk9Ap90MAZVyp+avhrgKE8luE+5NekVGZfSwDyzXU=";
+                }
+                {
+                    name = "remote-containers";
+                    publisher= "ms-vscode-remote";
+                    version = "0.320.0";
+                    sha256 = "sha256-432TLuzHuXK9DmJlOpFFGlZqbWTsAWnGA8zk7/FarQw=";
+                }
+            ];
+            userSettings = {
+                "workbench.colorTheme" = "Tokyo Night nv";
+                "line-length-checker.lineLength" = 95;
+            };
         };
 
         programs.neovim = 
@@ -31,7 +69,6 @@ in
             vimdiffAlias = true;
             
             plugins = with pkgs.vimPlugins; [
-                nvim-remote-container
                 {
                     plugin = (nvim-treesitter.withPlugins (p: [
                         p.tree-sitter-nix

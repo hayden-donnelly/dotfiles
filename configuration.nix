@@ -16,6 +16,8 @@ in
             ./home.nix
         ];
 
+    home-manager.useGlobalPkgs = true;
+
     # Bootloader.
     boot = {
         loader = {
@@ -28,9 +30,6 @@ in
     # Allow unfree packages
     nixpkgs.config = {
         allowUnfree = true;
-        packageOverrides = pkgs: {
-            unstable = import unstableTarball { config = config.nixpkgs.config; };
-        };
     };
 
     # Enable OpenGL
@@ -146,32 +145,6 @@ in
             blender
             docker-compose
             flameshot
-            (unstable.vscode-with-extensions.override {
-                vscodeExtensions = with vscode-extensions; [
-                    ms-python.python
-                    ms-python.vscode-pylance
-                    bbenoist.nix
-                ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-                    {
-                        name = "line-length-checker-vscode";
-                        publisher = "SUPERTSY5";
-                        version = "1.0.0";
-                        sha256 = "sha256-yPgWWqaoYDXxj5sQuME5g3P+YVAt4iZEx0azRoiPZBg=";
-                    }
-                    {
-                        name = "copilot";
-                        publisher = "GitHub";
-                        version = "1.130.518";
-                        sha256 = "sha256-kHUk9Ap90MAZVyp+avhrgKE8luE+5NekVGZfSwDyzXU=";
-                    }
-                    {
-                        name = "remote-containers";
-                        publisher= "ms-vscode-remote";
-                        version = "0.320.0";
-                        sha256 = "sha256-432TLuzHuXK9DmJlOpFFGlZqbWTsAWnGA8zk7/FarQw=";
-                    }
-                ];
-            })
         ];
     };
 
