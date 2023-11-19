@@ -145,6 +145,7 @@ in
             blender
             docker-compose
             flameshot
+            inkscape
         ];
     };
 
