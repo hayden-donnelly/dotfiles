@@ -146,6 +146,7 @@ in
             docker-compose
             flameshot
             inkscape
+            gimp
         ];
     };
 
