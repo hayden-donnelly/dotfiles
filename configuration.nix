@@ -137,6 +137,7 @@ in
         extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [
             firefox
+            google-chrome
             kate
             git
             vim
@@ -147,6 +148,7 @@ in
             flameshot
             inkscape
             gimp
+            obs-studio
         ];
     };
 
