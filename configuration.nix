@@ -128,6 +128,10 @@ in
         description = "Hayden";
         extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [
+            (python310.withPackages (ps: with ps; [
+                numpy
+                pandas
+            ]))
             firefox
             google-chrome
             kate
