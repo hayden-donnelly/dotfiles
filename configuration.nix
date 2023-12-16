@@ -132,6 +132,7 @@ in
                 numpy
                 pandas
             ]))
+            ffmpeg
             firefox
             google-chrome
             kate
