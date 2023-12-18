@@ -22,6 +22,8 @@ in
             efi.canTouchEfiVariables = true;
         };
         supportedFilesystems = [ "ntfs" ];
+        extraModulePackages = [ pkgs.linuxPackages.nvidia_x11 ];
+        blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
     };
 
     # Allow unfree packages
@@ -42,7 +44,6 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
@@ -151,6 +152,7 @@ in
 
     environment.systemPackages = with pkgs; [
         vim
+        linuxPackages.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
