@@ -54,6 +54,7 @@ in
             userSettings = {
                 "workbench.colorTheme" = "Tokyo Night nv";
                 "line-length-checker.lineLength" = 95;
+                "git.ignoreMissingGitWarning" = true;
             };
         };
 
