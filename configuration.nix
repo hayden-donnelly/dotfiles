@@ -148,13 +148,12 @@ in
             inkscape
             gimp
             obs-studio
-            linuxPackages.nvidia_x11
         ];
     };
 
     environment.systemPackages = with pkgs; [
         vim
-        #linuxPackages.nvidia_x11
+        linuxPackages.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
