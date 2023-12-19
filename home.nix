@@ -3,7 +3,7 @@ with import <nixpkgs> { config = { allowUnfree = true; }; };
 let
     home-manager = builtins.fetchTarball {
         url = "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
-        sha256 = "0rwzab51hnr6cmm1w5zmfh29gbkg6byv8jnr7frcv5kd6m8kna41";
+        sha256 = "1gxlnjdmiw92qqmnp31hpdpw2via2xmy95fsnmlx0z177mxs669g";
     };
 in
 {
