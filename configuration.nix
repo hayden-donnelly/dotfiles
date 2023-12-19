@@ -44,6 +44,7 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
+        videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
@@ -147,12 +148,13 @@ in
             inkscape
             gimp
             obs-studio
+            linuxPackages.nvidia_x11
         ];
     };
 
     environment.systemPackages = with pkgs; [
         vim
-        linuxPackages.nvidia_x11
+        #linuxPackages.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
