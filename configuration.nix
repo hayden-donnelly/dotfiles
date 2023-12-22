@@ -24,12 +24,15 @@ in
         supportedFilesystems = [ "ntfs" ];
         extraModulePackages = [ pkgs.linuxPackages.nvidia_x11 ];
         blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
+        kernelParams = [ "i915.force_probe=4680" ];
     };
 
     # Allow unfree packages
     nixpkgs.config = {
         allowUnfree = true;
     };
+    
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # Enable OpenGL
     hardware.opengl = {
