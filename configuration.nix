@@ -47,7 +47,7 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        videoDrivers = ["nvidia"];
+        # videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
@@ -78,13 +78,6 @@ in
 
         # Optionally, you may need to select the appropriate driver version for your specific GPU.
         package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-        prime = {
-            sync.enable = true;
-            # Make sure to use the correct Bus ID values for your system!
-            intelBusId = "PCI:0:2:0";
-		    nvidiaBusId = "PCI:1:0:0";
-        };
     };
 
     networking.hostName = "nixos"; # Define your hostname.
