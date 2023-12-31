@@ -46,9 +46,15 @@ in
                 }
                 {
                     name = "remote-containers";
-                    publisher= "ms-vscode-remote";
+                    publisher = "ms-vscode-remote";
                     version = "0.320.0";
                     sha256 = "sha256-432TLuzHuXK9DmJlOpFFGlZqbWTsAWnGA8zk7/FarQw=";
+                }
+                {
+                    name = "cpptools-extension-pack";
+                    publisher = "ms-vscode";
+                    version = "1.3.0";
+                    sha256 = "sha256-rHST7CYCVins3fqXC+FYiS5Xgcjmi7QW7M4yFrUR04U=";
                 }
             ];
             userSettings = {
