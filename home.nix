@@ -19,6 +19,15 @@ in
             ".config/git/config".source = ./sources/gitconfig.txt;
         };
 
+        programs.tmux = {
+            enable = true;
+            plugins = with pkgs.tmuxPlugins; [
+                sensible
+                vim-tmux-navigator
+            ];
+            terminal = "screen-256color";
+        };
+
         programs.vscode = {
             enable = true;
             extensions = with pkgs.vscode-extensions; [
@@ -86,6 +95,10 @@ in
                         p.tree-sitter-json
                     ]));
                     config = toLuaFile ./nvim/plugin/treesitter.lua;
+                }
+                {
+                    plugin = kanagawa-nvim;
+                    config = "colorscheme kanagawa";
                 }
             ];
             
