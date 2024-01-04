@@ -27,6 +27,7 @@ in
             ];
             terminal = "screen-256color";
             mouse = true;
+            baseIndex = 1;
         };
 
         programs.vscode = {
