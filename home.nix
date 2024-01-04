@@ -30,6 +30,39 @@ in
             baseIndex = 1;
         };
 
+        programs.neovim = 
+        let
+            toLua = str: "lua << EOF\n${str}\nEOF\n";
+            toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+        in
+        {
+            enable = true;
+            viAlias = true;
+            vimAlias = true;
+            vimdiffAlias = true;
+            
+            plugins = with pkgs.vimPlugins; [
+                {
+                    plugin = (nvim-treesitter.withPlugins (p: [
+                        p.tree-sitter-nix
+                        p.tree-sitter-vim
+                        p.tree-sitter-bash
+                        p.tree-sitter-lua
+                        p.tree-sitter-python
+                        p.tree-sitter-json
+                    ]));
+                    config = toLuaFile ./nvim/plugin/treesitter.lua;
+                }
+                {
+                    plugin = kanagawa-nvim;
+                    config = "colorscheme kanagawa";
+                }
+                vim-tmux-navigator
+            ];
+            
+            extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
+        };
+
         programs.vscode = {
             enable = true;
             extensions = with pkgs.vscode-extensions; [
@@ -73,40 +106,6 @@ in
                 "line-length-checker.lineLength" = 95;
                 "git.ignoreMissingGitWarning" = true;
             };
-        };
-
-        programs.neovim = 
-        let
-            toLua = str: "lua << EOF\n${str}\nEOF\n";
-            toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-        in
-        {
-            enable = true;
-            viAlias = true;
-            vimAlias = true;
-            vimdiffAlias = true;
-            
-            plugins = with pkgs.vimPlugins; [
-                {
-                    plugin = (nvim-treesitter.withPlugins (p: [
-                        p.tree-sitter-nix
-                        p.tree-sitter-vim
-                        p.tree-sitter-bash
-                        p.tree-sitter-lua
-                        p.tree-sitter-python
-                        p.tree-sitter-json
-                    ]));
-                    config = toLuaFile ./nvim/plugin/treesitter.lua;
-                }
-                {
-                    plugin = kanagawa-nvim;
-                    config = "colorscheme kanagawa";
-                }
-                vim-tmux-navigator
-            ];
-            
-            extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
-        
         };
     };
 }
