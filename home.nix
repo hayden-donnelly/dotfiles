@@ -26,6 +26,7 @@ in
                 vim-tmux-navigator
             ];
             terminal = "screen-256color";
+            mouse = true;
         };
 
         programs.vscode = {
@@ -100,6 +101,7 @@ in
                     plugin = kanagawa-nvim;
                     config = "colorscheme kanagawa";
                 }
+                vim-tmux-navigator
             ];
             
             extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
