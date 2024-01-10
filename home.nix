@@ -58,6 +58,7 @@ in
                     config = "colorscheme kanagawa";
                 }
                 vim-tmux-navigator
+                vimPlugins.vim-sleuth
             ];
             
             extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
