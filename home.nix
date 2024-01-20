@@ -52,13 +52,22 @@ in
                         p.tree-sitter-json
                         p.tree-sitter-cpp
                     ]));
-                    config = toLuaFile ./nvim/plugin/treesitter.lua;
+                    config = toLuaFile ./nvim/plugins/treesitter.lua;
                 }
                 {
                     plugin = kanagawa-nvim;
                     config = "colorscheme kanagawa";
                 }
+                {
+                    plugin = nvim-tree-lua;
+                    config = toLuaFile ./nvim/plugins/nvim_tree.lua;
+                }
+                {
+                    plugin = telescope-nvim;
+                    config = toLuaFile ./nvim/plugins/telescope.lua;
+                }
                 vim-tmux-navigator
+                nvim-web-devicons
             ];
             
             extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
