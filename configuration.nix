@@ -23,8 +23,6 @@ in
         };
         supportedFilesystems = [ "ntfs" ];
         extraModulePackages = [ 
-            #pkgs.linuxPackages.nvidia_x11 
-            #pkgs.linuxKernel.packages.linux_xanmod_stable.nvidia_x11
             pkgs.linuxKernel.packages.linux_6_1.nvidia_x11
         ];
         blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
@@ -143,7 +141,6 @@ in
             ffmpeg
             firefox
             google-chrome
-            kate
             git
             vlc
             blender
@@ -158,8 +155,6 @@ in
 
     environment.systemPackages = with pkgs; [
         vim
-        #linuxPackages.nvidia_x11
-        #pkgs.linuxKernel.packages.linux_xanmod_stable.nvidia_x11
         linuxKernel.packages.linux_6_1.nvidia_x11
     ];
 
