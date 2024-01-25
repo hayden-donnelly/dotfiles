@@ -22,7 +22,11 @@ in
             efi.canTouchEfiVariables = true;
         };
         supportedFilesystems = [ "ntfs" ];
-        extraModulePackages = [ pkgs.linuxPackages.nvidia_x11 ];
+        extraModulePackages = [ 
+            #pkgs.linuxPackages.nvidia_x11 
+            #pkgs.linuxKernel.packages.linux_xanmod_stable.nvidia_x11
+            pkgs.linuxKernel.packages.linux_6_1.nvidia_x11
+        ];
         blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
         kernelParams = [ "i915.force_probe=4680" ];
     };
@@ -47,10 +51,14 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        # videoDrivers = ["nvidia"];
+        #videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
+    };
+
+    programs.steam = {
+        enable = true;
     };
 
     hardware.nvidia = {
@@ -127,16 +135,16 @@ in
         extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [
             (python310.withPackages (ps: with ps; [
+                requests
                 numpy
                 pandas
+                pip
             ]))
             ffmpeg
             firefox
             google-chrome
             kate
             git
-            vim
-            neovim
             vlc
             blender
             docker-compose
@@ -144,12 +152,15 @@ in
             inkscape
             gimp
             obs-studio
+            sqlitebrowser
         ];
     };
 
     environment.systemPackages = with pkgs; [
         vim
-        linuxPackages.nvidia_x11
+        #linuxPackages.nvidia_x11
+        #pkgs.linuxKernel.packages.linux_xanmod_stable.nvidia_x11
+        linuxKernel.packages.linux_6_1.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
