@@ -24,10 +24,22 @@ in
             plugins = with pkgs.tmuxPlugins; [
                 sensible
                 vim-tmux-navigator
+                yank
             ];
             terminal = "screen-256color";
             mouse = true;
             baseIndex = 1;
+            keyMode = "vi";
+            extraConfig = ''
+                # Vi keybindings.
+                set-window-option -g mode-keys vi
+                bind-key -T copy-mode-vi v send-keys -X begin-selection
+                bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+                bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+                # Open panes in current directory.
+                bind '"' split-window -v -c "#{pane_current_path}"
+                bind % split-window -h -c "#{pane_current_path}"
+            '';
         };
 
         programs.neovim = 
@@ -51,6 +63,7 @@ in
                         p.tree-sitter-python
                         p.tree-sitter-json
                         p.tree-sitter-cpp
+                        p.tree-sitter-glsl
                     ]));
                     config = toLuaFile ./nvim/plugins/treesitter.lua;
                 }
