@@ -22,3 +22,15 @@ function toggle_relative_number()
     end
 end
 
+function clipboard_yank()
+    vim.fn.system('xclip -i -selection clipboard', vim.fn.getreg('"'))
+end
+
+function clipboard_paste()
+    vim.fn.setreg('"', vim.fn.system('xclip -o -selection clipboard'))
+end
+
+vim.api.nvim_set_keymap('v', 'y', 'y:lua clipboard_yank()<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', 'd', 'd:lua clipboard_yank()<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'p', ':lua clipboard_paste()<cr>p', {noremap = true, silent = true})
+

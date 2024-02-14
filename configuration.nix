@@ -49,7 +49,7 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        #videoDrivers = ["nvidia"];
+        videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
@@ -150,6 +150,8 @@ in
             gimp
             obs-studio
             sqlitebrowser
+            cudaPackages.cudatoolkit
+            xclip
         ];
     };
 

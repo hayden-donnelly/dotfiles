@@ -18,7 +18,7 @@ in
         home.file = {
             ".config/git/config".source = ./sources/gitconfig.txt;
         };
-
+        
         programs.tmux = {
             enable = true;
             plugins = with pkgs.tmuxPlugins; [
