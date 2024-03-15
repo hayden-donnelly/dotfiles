@@ -16,6 +16,22 @@ in
         # your `configuration.nix` file.
         home.stateVersion = "23.05";
 
+        fonts.fontconfig.enable = true;        
+        home.packages = with pkgs; [
+            (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        ];
+        
+        programs.kitty = {
+            enable = true;
+            font = {
+                name = "JetBrainsMono";
+                size = 10;
+            };
+            extraConfig = ''
+                font_family JetBrainsMono Nerd Font Mono
+            '';
+        };
+
         programs.git = {
             enable = true;
             lfs.enable = true;
@@ -79,8 +95,8 @@ in
                     config = toLuaFile ./nvim/plugins/treesitter.lua;
                 }
                 {
-                    plugin = kanagawa-nvim;
-                    config = "colorscheme kanagawa";
+                    plugin = gruvbox-nvim;
+                    config = "colorscheme gruvbox";
                 }
                 {
                     plugin = nvim-tree-lua;
@@ -94,7 +110,9 @@ in
                 nvim-web-devicons
             ];
             
-            extraLuaConfig = ''${builtins.readFile ./nvim/options.lua}'';
+            extraLuaConfig = ''
+                ${builtins.readFile ./nvim/options.lua}
+            '';
         };
 
         programs.vscode = {
