@@ -29,6 +29,7 @@ in
             };
             extraConfig = ''
                 font_family JetBrainsMono Nerd Font Mono
+                disable_ligatures always
             '';
         };
 
