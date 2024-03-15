@@ -27,6 +27,7 @@ in
                 name = "JetBrainsMono";
                 size = 10;
             };
+            theme = "Gruvbox Dark";
             extraConfig = ''
                 font_family JetBrainsMono Nerd Font Mono
                 disable_ligatures always
