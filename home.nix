@@ -47,6 +47,9 @@ in
                 # Open panes in current directory.
                 bind '"' split-window -v -c "#{pane_current_path}"
                 bind % split-window -h -c "#{pane_current_path}"
+                # Enable copying to system clipboard.
+                set -g set-clipboard on
+                bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
             '';
         };
 
