@@ -1,9 +1,0 @@
-[user]
-	email = donnellyhd@outlook.com
-	username = hayded-donnelly
-[init]
-	defaultBranch = main
-[github]
-	user = hayden-donnelly
-[core]
-	editor = vim

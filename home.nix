@@ -15,10 +15,18 @@ in
         # This should be the same value as `system.stateVersion` in
         # your `configuration.nix` file.
         home.stateVersion = "23.05";
-        home.file = {
-            ".config/git/config".source = ./sources/gitconfig.txt;
+
+        programs.git = {
+            enable = true;
+            lfs.enable = true;
+            userName = "hayden-donnelly";
+            userEmail = "donnellyhd@outlook.com";
+            extraConfig = {
+                github.user = "hayden-donnelly";
+                core.editor = "vim";
+            };
         };
-        
+
         programs.tmux = {
             enable = true;
             plugins = with pkgs.tmuxPlugins; [
