@@ -24,7 +24,7 @@ in
         };
         supportedFilesystems = [ "ntfs" ];
         extraModulePackages = [ 
-            pkgs.linuxKernel.packages.linux_6_1.nvidia_x11
+            config.boot.kernelPackages.nvidia_x11
         ];
         blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
         kernelParams = [ "i915.force_probe=4680" ];
@@ -50,7 +50,7 @@ in
         enable = true;
         layout = "us";
         xkbVariant = "";
-        videoDrivers = ["nvidia"];
+        #videoDrivers = ["nvidia"];
         # Enable the KDE Plasma Desktop Environment.
         displayManager.sddm.enable = true;
         desktopManager.plasma5.enable = true;
@@ -162,7 +162,7 @@ in
 
     environment.systemPackages = with pkgs; [
         vim
-        linuxKernel.packages.linux_6_1.nvidia_x11
+        config.boot.kernelPackages.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
