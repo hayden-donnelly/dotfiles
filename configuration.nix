@@ -11,6 +11,7 @@ in
             # Include the results of the hardware scan.
             ./hardware-configuration.nix
             ./home.nix
+            ./cachix.nix
         ];
 
     home-manager.useGlobalPkgs = true;
@@ -136,12 +137,16 @@ in
                 requests
                 numpy
                 pandas
+                pillow
                 pip
+                pyarrow
             ]))
+            cachix
             ffmpeg
             firefox
             google-chrome
             git
+            git-lfs
             vlc
             blender
             docker-compose
