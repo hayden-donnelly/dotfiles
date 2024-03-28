@@ -59,6 +59,16 @@ in
     programs.steam = {
         enable = true;
     };
+    
+    programs.bash.shellAliases = {
+        nd = "nix develop";
+        # Rebuild system.
+        rebuild = "(cd /home/hayden/repos/dotfiles && bash rebuild.sh)";
+        # Open configuration directory in neovim.
+        conf = "nvim /home/hayden/repos/dotfiles/";
+        # Print the name of the shell. Useful for seeing if you're in a devshell.
+        sname = "echo $name"; 
+    };
 
     hardware.nvidia = {
         # Modesetting is required.
