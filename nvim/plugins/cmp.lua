@@ -42,5 +42,36 @@ cmp.setup {
     sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'nvim_lsp_signature_help' }
+    },
+    view = {
+        entries = { name = 'custom', selection_order = 'near_cursor' },
+    },
+    experimental = {
+        native_menu = false,
+        ghost_text = true,
+    },
+    window = {
+        completion = {
+            border = 'single',
+            max_width = 80,
+            max_height = 20
+        },
+        documentation = {
+            border = 'single',
+            max_width = 80,
+            max_height = 20,
+        },
+    },
+    formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = 'λ',
+                luasnip = '⋗',
+            }
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
     },
 }

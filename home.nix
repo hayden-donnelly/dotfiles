@@ -91,7 +91,7 @@ in
                         p.tree-sitter-lua
                         p.tree-sitter-python
                         p.tree-sitter-json
-                        #p.tree-sitter-cpp
+                        p.tree-sitter-cpp
                         p.tree-sitter-glsl
                     ]));
                     config = toLuaFile ./nvim/plugins/treesitter.lua;
@@ -122,6 +122,8 @@ in
                 cmp-nvim-lsp
                 luasnip
                 cmp_luasnip
+                cmp-nvim-lsp-signature-help
+                cmp-buffer
             ];
             
             extraLuaConfig = ''

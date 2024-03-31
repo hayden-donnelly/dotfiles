@@ -11,6 +11,8 @@ vim.o.termguicolors = true
 vim.o.mouse = 'a'
 -- Toggle relative line numbers on and off with 'r'.
 vim.api.nvim_set_keymap('n', 'r', ':lua toggle_relative_number()<CR>', {noremap = true})
+-- Popup memnu height.
+vim.opt.pumheight = 10
 
 function toggle_relative_number()
     if vim.wo.relativenumber == true then
@@ -33,4 +35,3 @@ end
 vim.api.nvim_set_keymap('v', 'y', 'y:lua clipboard_yank()<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', 'd', 'd:lua clipboard_yank()<cr>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'p', ':lua clipboard_paste()<cr>p', {noremap = true, silent = true})
-
