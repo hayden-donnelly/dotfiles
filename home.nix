@@ -33,7 +33,7 @@ in
                 disable_ligatures always
             '';
         };
-
+        
         programs.git = {
             enable = true;
             lfs.enable = true;
@@ -98,12 +98,7 @@ in
                 }
                 {
                     plugin = nvim-lspconfig;
-                    config = toLua ''
-                        local nvim_lsp = require('lspconfig')
-
-                        -- C++ LSP configuration
-                        nvim_lsp.clangd.setup {}
-                    '';
+                    config = toLuaFile ./nvim/plugins/lsp.lua;
                 }
                 {
                     plugin = gruvbox-nvim;
@@ -117,9 +112,16 @@ in
                     plugin = telescope-nvim;
                     config = toLuaFile ./nvim/plugins/telescope.lua;
                 }
+                {
+                    plugin = nvim-cmp;
+                    config = toLuaFile ./nvim/plugins/cmp.lua;
+                }
                 vim-tmux-navigator
                 nvim-web-devicons
                 vim-glsl
+                cmp-nvim-lsp
+                luasnip
+                cmp_luasnip
             ];
             
             extraLuaConfig = ''
