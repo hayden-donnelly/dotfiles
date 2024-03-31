@@ -110,6 +110,7 @@ in
                 }
                 vim-tmux-navigator
                 nvim-web-devicons
+                vim-glsl
             ];
             
             extraLuaConfig = ''
