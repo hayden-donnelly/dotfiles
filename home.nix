@@ -91,10 +91,19 @@ in
                         p.tree-sitter-lua
                         p.tree-sitter-python
                         p.tree-sitter-json
-                        p.tree-sitter-cpp
+                        #p.tree-sitter-cpp
                         p.tree-sitter-glsl
                     ]));
                     config = toLuaFile ./nvim/plugins/treesitter.lua;
+                }
+                {
+                    plugin = nvim-lspconfig;
+                    config = toLua ''
+                        local nvim_lsp = require('lspconfig')
+
+                        -- C++ LSP configuration
+                        nvim_lsp.clangd.setup {}
+                    '';
                 }
                 {
                     plugin = gruvbox-nvim;

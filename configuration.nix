@@ -167,6 +167,7 @@ in
             sqlitebrowser
             cudaPackages.cudatoolkit
             xclip
+            clang-tools
         ];
     };
 
