@@ -92,7 +92,6 @@ in
                         p.tree-sitter-python
                         p.tree-sitter-json
                         p.tree-sitter-cpp
-                        p.tree-sitter-glsl
                     ]));
                     config = toLuaFile ./nvim/plugins/treesitter.lua;
                 }
