@@ -56,6 +56,7 @@ in
     
     programs.bash.shellAliases = {
         nd = "nix develop";
+        ndi = "nix develop --impure";
         # Rebuild system.
         rebuild = "(cd /home/hayden/repos/dotfiles && bash rebuild.sh)";
         # Open configuration directory in neovim.
