@@ -25,8 +25,8 @@ in
             efi.canTouchEfiVariables = true;
         };
         supportedFilesystems = [ "ntfs" ];
-        extraModulePackages = with pkgs; [ 
-            linuxKernel.packages.linux_6_1.nvidia_x11
+        extraModulePackages = [ 
+            config.boot.kernelPackages.nvidia_x11
         ];
         blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
         kernelParams = [ "i915.force_probe=4680" ];
@@ -131,7 +131,7 @@ in
 
     environment.systemPackages = with pkgs; [
         vim
-        linuxKernel.packages.linux_6_1.nvidia_x11
+        config.boot.kernelPackages.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
