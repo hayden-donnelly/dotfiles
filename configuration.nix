@@ -125,6 +125,7 @@ in
             cudaPackages.cudatoolkit
             xclip
             clang-tools
+            pyright
             ppsspp
         ];
     };
