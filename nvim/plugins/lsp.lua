@@ -10,3 +10,15 @@ nvim_lsp.clangd.setup {
         }
     },
 }
+
+nvim_lsp.pyright.setup {
+    handlers = {
+        ["textDocument/publishDiagnostics"] = function() end,
+    },
+    file_types = {"python"},
+    init_options = {
+        highlight = {
+            lsRanges = false,
+        }
+    },
+}
