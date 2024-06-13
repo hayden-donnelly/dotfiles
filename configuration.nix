@@ -6,98 +6,95 @@ let
             https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in
 {
-    imports =
-        [
-            ./hardware-configuration.nix
-            ./home.nix
-            ./cachix.nix
-        ];
-
+    imports = [
+        ./hardware-configuration.nix
+        ./home.nix
+        ./cachix.nix
+    ];
+    
     home-manager.useGlobalPkgs = true;
-
+    nixpkgs.config.allowUnfree = true;
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    i18n.defaultLocale = "en_CA.UTF-8";
+    sound.enable = true;
+    security.rtkit.enable = true;
+    
     boot = {
         loader = {
             systemd-boot.enable = true;
             efi.canTouchEfiVariables = true;
         };
         supportedFilesystems = [ "ntfs" ];
-        extraModulePackages = [ 
-            pkgs.linuxKernel.packages.linux_6_1.nvidia_x11
+        extraModulePackages = with pkgs; [ 
+            linuxKernel.packages.linux_6_1.nvidia_x11
         ];
         blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
         kernelParams = [ "i915.force_probe=4680" ];
     };
-
-    nixpkgs.config = {
-        allowUnfree = true;
+    
+    hardware = {
+        opengl = {
+            enable = true;
+            driSupport = true;
+            driSupport32Bit = true;
+            extraPackages = with pkgs; [ intel-media-driver ];
+        };
+        nvidia = {
+            modesetting.enable = true;
+            powerManagement.enable = false;
+            powerManagement.finegrained = false;
+            open = true;
+            nvidiaSettings = true;
+            package = config.boot.kernelPackages.nvidiaPackages.stable;
+        };
+        pulseaudio.enable = false;
     };
     
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-        extraPackages = with pkgs; [ intel-media-driver ];
-    };
-
-    services.xserver = {
-        enable = true;
-        layout = "us";
-        xkbVariant = "";
-        videoDrivers = ["nvidia"];
-        displayManager.sddm.enable = true;
-        desktopManager.plasma5.enable = true;
-    };
-
-    programs.steam = {
-        enable = true;
+    programs = {
+        steam.enable = true; 
+        bash.shellAliases = {
+            nd = "nix develop";
+            ndi = "nix develop --impure";
+            # Rebuild system.
+            rebuild = "(cd /home/hayden/repos/dotfiles && bash rebuild.sh)";
+            # Open configuration directory in neovim.
+            conf = "nvim /home/hayden/repos/dotfiles/";
+            # Print the name of the shell. Useful for seeing if you're in a devshell.
+            sname = "echo $name";
+        };
     };
     
-    programs.bash.shellAliases = {
-        nd = "nix develop";
-        ndi = "nix develop --impure";
-        # Rebuild system.
-        rebuild = "(cd /home/hayden/repos/dotfiles && bash rebuild.sh)";
-        # Open configuration directory in neovim.
-        conf = "nvim /home/hayden/repos/dotfiles/";
-        # Print the name of the shell. Useful for seeing if you're in a devshell.
-        sname = "echo $name"; 
+    services = {
+        xserver = {
+            enable = true;
+            layout = "us";
+            xkbVariant = "";
+            # Re-enable this for Docker GPU containers. Flakes with nixGL do not need it.
+            # videoDrivers = ["nvidia"];
+            displayManager.sddm.enable = true;
+            desktopManager.plasma5.enable = true;
+        };
+        pipewire = {
+            enable = true;
+            alsa.enable = true;
+            alsa.support32Bit = true;
+            pulse.enable = true;
+            # If you want to use JACK applications, uncomment this
+            #jack.enable = true;
+        };
+        printing.enable = true;
     };
-
-    hardware.nvidia = {
-        modesetting.enable = true;
-        powerManagement.enable = false;
-        powerManagement.finegrained = false;
-        open = true;
-        nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+    
+    networking = {
+        hostName = "nixos";
+        networkmanager.enable = true;
     };
-
-    networking.hostName = "nixos";
-    networking.networkmanager.enable = true;
-    time.timeZone = "America/Toronto";
-    i18n.defaultLocale = "en_CA.UTF-8";
 
     virtualisation.docker = {
         enable = true;
         enableNvidia = true;
     };
-
-    services.printing.enable = true;
-
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-    security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        # If you want to use JACK applications, uncomment this
-        #jack.enable = true;
-    };
-
+        
     users.users.hayden = {
         isNormalUser = true;
         description = "Hayden";
@@ -128,6 +125,7 @@ in
             cudaPackages.cudatoolkit
             xclip
             clang-tools
+            ppsspp
         ];
     };
 
