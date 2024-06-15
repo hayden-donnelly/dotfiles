@@ -16,6 +16,7 @@ in
     nixpkgs.config.allowUnfree = true;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     i18n.defaultLocale = "en_CA.UTF-8";
+    time.timeZone = "America/Toronto";
     sound.enable = true;
     security.rtkit.enable = true;
     
