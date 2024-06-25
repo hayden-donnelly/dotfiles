@@ -1,18 +1,10 @@
 { config, pkgs, ... }:
 
-let
-    unstableTarball =
-        fetchTarball
-            https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-in
 {
     imports = [
         ./hardware-configuration.nix
-        ./home.nix
-        ./cachix.nix
     ];
     
-    home-manager.useGlobalPkgs = true;
     nixpkgs.config.allowUnfree = true;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     i18n.defaultLocale = "en_CA.UTF-8";
@@ -68,13 +60,15 @@ in
     services = {
         xserver = {
             enable = true;
-            layout = "us";
-            xkbVariant = "";
+            xkb = {
+                layout = "us";
+                variant = "";
+            };
             # Re-enable this for Docker GPU containers. Flakes with nixGL do not need it.
             # videoDrivers = ["nvidia"];
-            displayManager.sddm.enable = true;
             desktopManager.plasma5.enable = true;
         };
+        displayManager.sddm.enable = true;
         pipewire = {
             enable = true;
             alsa.enable = true;
