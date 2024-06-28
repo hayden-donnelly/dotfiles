@@ -64,11 +64,19 @@
                 layout = "us";
                 variant = "";
             };
+            windowManager.dwm = {
+                enable = true;
+                package = pkgs.dwm.overrideAttrs {
+                    src = ./dwm;
+                };
+            };
             # Re-enable this for Docker GPU containers. Flakes with nixGL do not need it.
             # videoDrivers = ["nvidia"];
-            desktopManager.plasma5.enable = true;
         };
-        displayManager.sddm.enable = true;
+        displayManager = {
+            sddm.enable = true;
+            defaultSession = "none+dwm";
+        };
         pipewire = {
             enable = true;
             alsa.enable = true;
@@ -122,11 +130,18 @@
             clang-tools
             pyright
             ppsspp
+            neofetch
+            htop
         ];
     };
 
     environment.systemPackages = with pkgs; [
         vim
+        dmenu
+        (st.overrideAttrs (oldAttrs: rec {
+            configFile = writeText "config.def.h" (builtins.readFile ./st/config.h);
+            postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
+        }))
         config.boot.kernelPackages.nvidia_x11
     ];
 
