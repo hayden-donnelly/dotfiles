@@ -54,6 +54,8 @@
             conf = "nvim /home/hayden/repos/dotfiles/";
             # Print the name of the shell. Useful for seeing if you're in a devshell.
             sname = "echo $name";
+            # Start script for displaying dwm status bar.
+            stathack = "(cd /home/hayden/repos/dotfiles && bash status.sh & disown)";
         };
     };
     
