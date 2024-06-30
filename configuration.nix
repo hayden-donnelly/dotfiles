@@ -134,6 +134,10 @@
             ppsspp
             neofetch
             htop
+            gcc
+            cmake
+            gnumake
+            valgrind
         ];
     };
 
