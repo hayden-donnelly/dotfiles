@@ -30,6 +30,9 @@
         extraConfig = {
             github.user = "hayden-donnelly";
             core.editor = "vim";
+            credential.helper = "${
+                pkgs.git.override { withLibsecret = true; }
+            }/bin/git-credential-libsecret";
         };
     };
 
