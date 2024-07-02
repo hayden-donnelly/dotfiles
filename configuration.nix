@@ -117,8 +117,6 @@
             ffmpeg
             firefox
             google-chrome
-            git
-            git-lfs
             vlc
             blender
             docker-compose
