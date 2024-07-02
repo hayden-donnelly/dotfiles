@@ -60,6 +60,7 @@
     };
     
     services = {
+        gnome.gnome-keyring.enable = true;
         xserver = {
             enable = true;
             xkb = {
