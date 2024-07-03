@@ -137,6 +137,7 @@
             cmake
             gnumake
             valgrind
+            pulseaudio
         ];
     };
 
