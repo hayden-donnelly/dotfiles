@@ -57,9 +57,14 @@
             # Start script for displaying dwm status bar.
             stathack = "(cd /home/hayden/repos/dotfiles && bash status.sh & disown)";
         };
+        thunar.enable = true;
     };
-    
+
     services = {
+        # Image thumbnails for Thunar.
+        tumbler.enable = true;
+        # Other functionality for Thunar.
+        gvfs.enable = true;
         gnome.gnome-keyring.enable = true;
         xserver = {
             enable = true;
@@ -137,7 +142,10 @@
             cmake
             gnumake
             valgrind
+            pipewire
             pulseaudio
+            libpulseaudio
+            pkg-config
         ];
     };
 
