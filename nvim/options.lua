@@ -5,9 +5,11 @@ vim.o.number = true
 vim.o.signcolumn = 'yes'
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.smartindent = true
 vim.o.expandtab = true
-vim.o.updatetime = 300
+vim.o.updatetime = 1000
 vim.o.termguicolors = true
+vim.o.lazyredraw = true
 vim.o.mouse = 'a'
 -- Toggle relative line numbers on and off with 'r'.
 vim.api.nvim_set_keymap('n', 'r', ':lua toggle_relative_number()<CR>', {noremap = true})

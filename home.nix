@@ -72,10 +72,17 @@
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
-        
         plugins = with pkgs.vimPlugins; [
             {
-                plugin = nvim-treesitter.withAllGrammars;
+                plugin = nvim-treesitter.withPlugins (treesitter-plugins: 
+                    with treesitter-plugins; [
+                        bash
+                        lua
+                        nix
+                        python
+                    ]
+                );
+                #plugin = nvim-treesitter.withAllGrammars;
                 config = toLuaFile ./nvim/plugins/treesitter.lua;
             }
             {
@@ -89,10 +96,6 @@
             {
                 plugin = nvim-tree-lua;
                 config = toLuaFile ./nvim/plugins/nvim_tree.lua;
-            }
-            {
-                plugin = telescope-nvim;
-                config = toLuaFile ./nvim/plugins/telescope.lua;
             }
             {
                 plugin = nvim-cmp;
