@@ -1,9 +1,18 @@
-local nvim_lsp = require('lspconfig')
+local lspconfig = require('lspconfig')
 
-nvim_lsp.clangd.setup {
+local on_attach = function(client, bufnr)
+    -- Disable all highlighting
+    client.server_capabilities.documentHighlightProvider = false
+    -- Disable semantic tokens
+    client.server_capabilities.semanticTokensProvider = nil
+end
+
+lspconfig.clangd.setup {
+    on_attach = on_attach,
     handlers = {
         ["textDocument/publishDiagnostics"] = function() end,
     },
+    file_types = {"c", "cpp", "cuda"},
     init_options = {
         highlight = {
             lsRanges = false,
@@ -11,7 +20,8 @@ nvim_lsp.clangd.setup {
     },
 }
 
-nvim_lsp.pyright.setup {
+lspconfig.pyright.setup {
+    on_attach = on_attach,
     handlers = {
         ["textDocument/publishDiagnostics"] = function() end,
     },
