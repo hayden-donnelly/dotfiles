@@ -80,6 +80,8 @@
                         lua
                         nix
                         python
+                        c
+                        cpp
                     ]
                 );
                 #plugin = nvim-treesitter.withAllGrammars;
