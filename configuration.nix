@@ -111,7 +111,7 @@
         description = "Hayden";
         extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [
-            (python310.withPackages (ps: with ps; [
+            (python311.withPackages (ps: with ps; [
                 requests
                 numpy
                 pandas
