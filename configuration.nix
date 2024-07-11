@@ -142,6 +142,7 @@
             cmake
             gnumake
             valgrind
+            gdb
             pipewire
             pulseaudio
             libpulseaudio
