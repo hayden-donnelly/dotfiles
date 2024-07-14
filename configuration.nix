@@ -57,7 +57,7 @@
             # Start script for displaying dwm status bar.
             stathack = "(cd ~/repos/dotfiles && bash status.sh & disown)";
             # Set wallpaper.
-            wallhack = "(cd ~/repos/dotfiles && bash wallpaper.sh)";
+            wallhack = "feh --bg-fill ~/.wallpaper.png";
         };
         thunar.enable = true;
     };
