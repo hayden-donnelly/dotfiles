@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, dwm-src, ... }:
 
 {
     imports = [
@@ -75,7 +75,7 @@
             windowManager.dwm = {
                 enable = true;
                 package = pkgs.dwm.overrideAttrs {
-                    src = ./dwm;
+                    src = dwm-src;
                 };
             };
             # Re-enable this for Docker GPU containers. Flakes with nixGL do not need it.

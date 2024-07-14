@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "dwm-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720982529,
+        "narHash": "sha256-U8m99uUAX8LyAgShSa3pjn9sXk8W9mk41kLSP9lIoyQ=",
+        "owner": "hayden-donnelly",
+        "repo": "hdwm",
+        "rev": "8d09aeca2e24008bb3ea55e70a6134e284a718d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hayden-donnelly",
+        "ref": "1.0.0",
+        "repo": "hdwm",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -39,6 +56,7 @@
     },
     "root": {
       "inputs": {
+        "dwm-src": "dwm-src",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
       }
