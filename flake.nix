@@ -14,20 +14,6 @@
     };
 
     outputs = {self, nixpkgs, home-manager, dwm-src, ...}@inputs:
-    #let
-    #    overlays = [
-    #        (final: prev: {
-    #            dwm = prev.dwm.overrideAttrs (oldattrs: {
-    #                src = fetchGit {
-    #                    url = "https://github.com/hayden-donnelly/hdwm.git";
-    #                    rev = "8d09aeca2e24008bb3ea55e70a6134e284a718d3";
-    #                }; 
-    #            });
-    #        })
-    #    ];
-    #    system = "x86_64-linux";
-    #    pkgs = import nixpkgs { inherit system overlays; };
-    #in {
     {
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
