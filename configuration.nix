@@ -49,13 +49,15 @@
             nd = "nix develop";
             ndi = "nix develop --impure";
             # Rebuild system.
-            rebuild = "(cd /home/hayden/repos/dotfiles && bash rebuild.sh)";
+            rebuild = "(cd ~/repos/dotfiles && bash rebuild.sh)";
             # Open configuration directory in neovim.
             conf = "nvim /home/hayden/repos/dotfiles/";
             # Print the name of the shell. Useful for seeing if you're in a devshell.
             sname = "echo $name";
             # Start script for displaying dwm status bar.
-            stathack = "(cd /home/hayden/repos/dotfiles && bash status.sh & disown)";
+            stathack = "(cd ~/repos/dotfiles && bash status.sh & disown)";
+            # Set wallpaper.
+            wallhack = "(cd ~/repos/dotfiles && bash wallpaper.sh)";
         };
         thunar.enable = true;
     };
@@ -147,6 +149,7 @@
             pulseaudio
             libpulseaudio
             pkg-config
+            feh
         ];
     };
 
