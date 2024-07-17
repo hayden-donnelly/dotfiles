@@ -16,6 +16,8 @@ vim.api.nvim_set_keymap('n', 'r', ':lua toggle_relative_number()<CR>', {noremap 
 -- Popup memnu height.
 vim.opt.pumheight = 10
 
+vim.g.zig_fmt_autosave = 0
+
 function toggle_relative_number()
     if vim.wo.relativenumber == true then
         vim.wo.relativenumber = false
