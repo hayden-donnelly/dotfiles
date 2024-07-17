@@ -150,6 +150,7 @@
             libpulseaudio
             pkg-config
             feh
+            zig
         ];
     };
 
