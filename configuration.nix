@@ -136,6 +136,7 @@
             cudaPackages.cudatoolkit
             xclip
             clang-tools
+            cppcheck
             pyright
             ppsspp
             neofetch
