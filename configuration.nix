@@ -113,6 +113,24 @@
         description = "Hayden";
         extraGroups = [ "networkmanager" "wheel" "docker" ];
         packages = with pkgs; [
+            # General.
+            firefox
+            google-chrome
+            xclip
+            neofetch
+            htop
+            feh
+            # Media and content creation.
+            vlc
+            ffmpeg
+            blender
+            flameshot
+            inkscape
+            gimp
+            obs-studio
+            # Gaming.
+            ppsspp
+            # Development.
             (python311.withPackages (ps: with ps; [
                 requests
                 numpy
@@ -121,37 +139,23 @@
                 pip
                 pyarrow
             ]))
-            cachix
-            ffmpeg
-            firefox
-            google-chrome
-            vlc
-            blender
+            pyright
             docker-compose
-            flameshot
-            inkscape
-            gimp
-            obs-studio
             sqlitebrowser
+            cachix
             cudaPackages.cudatoolkit
-            xclip
             clang-tools
             cppcheck
-            pyright
-            ppsspp
-            neofetch
-            htop
             gcc
             cmake
             gnumake
             valgrind
             gdb
+            zig
             pipewire
             pulseaudio
             libpulseaudio
             pkg-config
-            feh
-            zig
         ];
     };
 
