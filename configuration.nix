@@ -118,6 +118,7 @@
             google-chrome
             xclip
             neofetch
+            ledger
             htop
             feh
             # Media and content creation.
