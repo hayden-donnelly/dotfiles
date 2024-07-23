@@ -163,10 +163,6 @@
     environment.systemPackages = with pkgs; [
         vim
         dmenu
-        (st.overrideAttrs (oldAttrs: rec {
-            configFile = writeText "config.def.h" (builtins.readFile ./st/config.h);
-            postPatch = "${oldAttrs.postPatch}\n cp ${configFile} config.def.h";
-        }))
         config.boot.kernelPackages.nvidia_x11
     ];
 
