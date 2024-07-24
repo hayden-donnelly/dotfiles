@@ -8,7 +8,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         dwm-src = {
-            url = "github:hayden-donnelly/hdwm/fda4738f3430c9564c018b7f228006342c5de844";
+            url = "github:hayden-donnelly/hdwm/8f4d925ad7d2b83ee6a34bd655ae14de50323985";
             flake = false;
         };
     };
