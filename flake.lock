@@ -3,17 +3,17 @@
     "dwm-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1721596698,
-        "narHash": "sha256-xq2Q8hOX6fwklxGc8Dj2oGujFrygUyTcmY6qOmg08nA=",
+        "lastModified": 1721779515,
+        "narHash": "sha256-/eA4kJaO9BlpyRs+o+aAqQIq4/zwLuj2RzQEXKcjdl0=",
         "owner": "hayden-donnelly",
         "repo": "hdwm",
-        "rev": "fda4738f3430c9564c018b7f228006342c5de844",
+        "rev": "8f4d925ad7d2b83ee6a34bd655ae14de50323985",
         "type": "github"
       },
       "original": {
         "owner": "hayden-donnelly",
         "repo": "hdwm",
-        "rev": "fda4738f3430c9564c018b7f228006342c5de844",
+        "rev": "8f4d925ad7d2b83ee6a34bd655ae14de50323985",
         "type": "github"
       }
     },
