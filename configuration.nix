@@ -129,6 +129,7 @@
             inkscape
             gimp
             obs-studio
+            kdePackages.gwenview
             # Gaming.
             ppsspp
             # Development.
