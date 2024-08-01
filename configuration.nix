@@ -17,12 +17,14 @@
             systemd-boot.enable = true;
             efi.canTouchEfiVariables = true;
         };
+        initrd.kernelModules = [ "nvidia" ];
+        extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
         supportedFilesystems = [ "ntfs" ];
-        extraModulePackages = [ 
-            config.boot.kernelPackages.nvidia_x11
-        ];
-        blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
-        kernelParams = [ "i915.force_probe=4680" ];
+        #extraModulePackages = [ 
+        #    #config.boot.kernelPackages.nvidia_x11
+        #];
+        #blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
+        #kernelParams = [ "i915.force_probe=4680" ];
     };
     
     hardware = {
@@ -30,7 +32,7 @@
             enable = true;
             driSupport = true;
             driSupport32Bit = true;
-            extraPackages = with pkgs; [ intel-media-driver ];
+            #extraPackages = with pkgs; [ intel-media-driver ];
         };
         nvidia = {
             modesetting.enable = true;
@@ -81,7 +83,7 @@
                 };
             };
             # Re-enable this for Docker GPU containers. Flakes with nixGL do not need it.
-            # videoDrivers = ["nvidia"];
+            videoDrivers = ["nvidia"];
         };
         displayManager = {
             sddm.enable = true;
@@ -120,6 +122,7 @@
             neofetch
             ledger
             htop
+            nvtopPackages.full
             feh
             # Media and content creation.
             vlc
@@ -164,7 +167,6 @@
     environment.systemPackages = with pkgs; [
         vim
         dmenu
-        config.boot.kernelPackages.nvidia_x11
     ];
 
     # This value determines the NixOS release from which the default
