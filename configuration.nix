@@ -102,16 +102,19 @@
         hostName = "nixos";
         networkmanager.enable = true;
     };
-
-    virtualisation.docker = {
-        enable = true;
-        enableNvidia = true;
+    
+    virtualisation = {
+        docker = {
+            enable = true;
+            enableNvidia = true;
+        };
+        virtualbox.host.enable = true;
     };
         
     users.users.hayden = {
         isNormalUser = true;
         description = "Hayden";
-        extraGroups = [ "networkmanager" "wheel" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
         packages = with pkgs; [
             # General.
             firefox
