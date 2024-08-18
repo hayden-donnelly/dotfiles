@@ -70,10 +70,13 @@
         gnome.gnome-keyring.enable = true;
         xserver = {
             enable = true;
+            autoRepeatDelay = 190;
+            autoRepeatInterval = 30;
             xkb = {
                 layout = "us";
                 variant = "";
             };
+
             windowManager.dwm = {
                 enable = true;
                 package = pkgs.dwm.overrideAttrs {
