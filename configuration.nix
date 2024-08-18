@@ -124,6 +124,8 @@
             ledger
             htop
             feh
+            zip
+            unzip
             # Media and content creation.
             vlc
             ffmpeg
