@@ -129,6 +129,7 @@
             feh
             zip
             unzip
+            ncdu
             # Media and content creation.
             vlc
             ffmpeg
