@@ -82,6 +82,8 @@
                         python
                         c
                         cpp
+                        vim
+                        vimdoc
                     ]
                 );
                 #plugin = nvim-treesitter.withAllGrammars;
