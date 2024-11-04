@@ -130,6 +130,7 @@
             zip
             unzip
             ncdu
+            lsof
             # Media and content creation.
             vlc
             ffmpeg
@@ -137,8 +138,10 @@
             flameshot
             inkscape
             gimp
+            audacity
             obs-studio
             kdePackages.gwenview
+            qbittorrent
             # Gaming.
             ppsspp
             # Development.
