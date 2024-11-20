@@ -166,6 +166,7 @@
             valgrind
             gdb
             zig
+            go
             pipewire
             pulseaudio
             libpulseaudio

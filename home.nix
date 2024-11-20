@@ -84,6 +84,7 @@
                         cpp
                         vim
                         vimdoc
+                        go
                     ]
                 );
                 #plugin = nvim-treesitter.withAllGrammars;
