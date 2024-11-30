@@ -113,6 +113,13 @@
         };
         virtualbox.host.enable = true;
     };
+
+    programs.chromium = {
+        enable = true;
+        extraOpts = {
+            "AutoplayAllowed" = true;
+        };
+    };
         
     users.users.hayden = {
         isNormalUser = true;
@@ -145,6 +152,8 @@
             # Gaming.
             ppsspp
             # Development.
+            chromium
+            chromedriver
             (python311.withPackages (ps: with ps; [
                 requests
                 numpy
@@ -152,6 +161,7 @@
                 pillow
                 pip
                 pyarrow
+                selenium
             ]))
             pyright
             docker-compose
