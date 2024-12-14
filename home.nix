@@ -26,7 +26,7 @@
         enable = true;
         lfs.enable = true;
         userName = "hayden-donnelly";
-        userEmail = "donnellyhd@outlook.com";
+        userEmail = "hayden.git@proton.me";
         extraConfig = {
             github.user = "hayden-donnelly";
             core.editor = "vim";
