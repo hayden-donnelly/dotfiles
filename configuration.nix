@@ -163,6 +163,7 @@
                 pyarrow
                 selenium
             ]))
+            ghc
             pyright
             docker-compose
             sqlitebrowser
