@@ -164,6 +164,7 @@
                 selenium
             ]))
             ghc
+            nasm
             pyright
             docker-compose
             sqlitebrowser
