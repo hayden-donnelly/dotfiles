@@ -1,0 +1,1 @@
+nix run home-manager/release-24.05 -- switch --flake .#hayden-mac

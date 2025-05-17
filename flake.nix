@@ -3,6 +3,7 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+        nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
         home-manager = {
             url = "github:nix-community/home-manager/release-24.05";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -13,8 +14,10 @@
         };
     };
 
-    outputs = {self, nixpkgs, home-manager, dwm-src, ...}@inputs:
-    {
+    outputs = {self, nixpkgs, nixpkgs-darwin, home-manager, dwm-src, ...}@inputs:
+    let
+        darwinSystem = "aarch64-darwin";
+    in {
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit dwm-src; };
@@ -26,6 +29,11 @@
                     home-manager.users.hayden = import ./home.nix;
                 }
             ];
+        };
+
+        homeConfigurations.hayden-mac = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs-darwin.legacyPackages.${darwinSystem};
+            modules = [ ./home.nix ];
         };
     };
 }

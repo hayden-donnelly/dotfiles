@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
+let
+    isDarwin = pkgs.stdenv.isDarwin;
+in
 {
     home.stateVersion = "23.05";
     home.username = "hayden";
-    home.homeDirectory = "/home/hayden";
+    home.homeDirectory = if !isDarwin then "/home/hayden" else "/Users/hayden";
     fonts.fontconfig.enable = true;        
     home.packages = with pkgs; [
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -13,7 +15,7 @@
         enable = true;
         font = {
             name = "JetBrainsMono";
-            size = 10;
+            size = if !isDarwin then 10 else 12;
         };
         theme = "Gruvbox Dark";
         extraConfig = ''
@@ -121,7 +123,7 @@
         '';
     };
 
-    programs.vscode = {
+    programs.vscode = lib.mkIf (!isDarwin) {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
             ms-python.python
