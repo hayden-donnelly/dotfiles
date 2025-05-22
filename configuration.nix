@@ -165,6 +165,8 @@
             ]))
             ghc
             nasm
+            rustc
+            cargo
             pyright
             docker-compose
             sqlitebrowser
