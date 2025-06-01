@@ -8,7 +8,8 @@ in
     home.homeDirectory = if !isDarwin then "/home/hayden" else "/Users/hayden";
     fonts.fontconfig.enable = true;        
     home.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        nerd-fonts.jetbrains-mono
+        #(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
     
     programs.kitty = {
@@ -17,7 +18,7 @@ in
             name = "JetBrainsMono";
             size = if !isDarwin then 10 else 12;
         };
-        theme = "Gruvbox Dark";
+        themeFile = "Gruvbox Dark";
         extraConfig = ''
             font_family JetBrainsMono Nerd Font Mono
             disable_ligatures always
@@ -125,7 +126,7 @@ in
 
     programs.vscode = lib.mkIf (!isDarwin) {
         enable = true;
-        extensions = with pkgs.vscode-extensions; [
+        profiles.default.extensions = with pkgs.vscode-extensions; [
             ms-python.python
             ms-python.vscode-pylance
             bbenoist.nix
@@ -161,7 +162,7 @@ in
                 sha256 = "sha256-rHST7CYCVins3fqXC+FYiS5Xgcjmi7QW7M4yFrUR04U=";
             }
         ];
-        userSettings = {
+        profiles.default.userSettings = {
             "workbench.colorTheme" = "Tokyo Night nv";
             "line-length-checker.lineLength" = 95;
             "git.ignoreMissingGitWarning" = true;

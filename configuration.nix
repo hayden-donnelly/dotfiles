@@ -9,7 +9,6 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     i18n.defaultLocale = "en_CA.UTF-8";
     time.timeZone = "America/Toronto";
-    sound.enable = true;
     security.rtkit.enable = true;
     
     boot = {
@@ -18,18 +17,18 @@
             efi.canTouchEfiVariables = true;
         };
         supportedFilesystems = [ "ntfs" ];
+        initrd.kernelModules = [ "nvidia" ];
         extraModulePackages = [ 
             config.boot.kernelPackages.nvidia_x11
         ];
-        blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
-        kernelParams = [ "i915.force_probe=4680" ];
+        #blacklistedKernelModules = [ "nouveau" "nvidia_drm" "nvidia_modeset" "nvidia" ];
+        #kernelParams = [ "i915.force_probe=4680" ];
     };
     
     hardware = {
-        opengl = {
+        graphics = {
             enable = true;
-            driSupport = true;
-            driSupport32Bit = true;
+            enable32Bit = true;
             extraPackages = with pkgs; [ intel-media-driver ];
         };
         nvidia = {
@@ -40,7 +39,7 @@
             nvidiaSettings = true;
             package = config.boot.kernelPackages.nvidiaPackages.stable;
         };
-        pulseaudio.enable = false;
+        nvidia-container-toolkit.enable = true;
     };
     
     programs = {
@@ -63,6 +62,7 @@
     };
 
     services = {
+        pulseaudio.enable = false;
         # Image thumbnails for Thunar.
         tumbler.enable = true;
         # Other functionality for Thunar.
@@ -83,8 +83,7 @@
                     src = dwm-src;
                 };
             };
-            # Re-enable this for Docker GPU containers. Flakes with nixGL do not need it.
-            # videoDrivers = ["nvidia"];
+            videoDrivers = ["nvidia"];
         };
         displayManager = {
             sddm.enable = true;
@@ -109,7 +108,6 @@
     virtualisation = {
         docker = {
             enable = true;
-            enableNvidia = true;
         };
         virtualbox.host.enable = true;
     };
