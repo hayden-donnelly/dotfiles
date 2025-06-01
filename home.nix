@@ -18,7 +18,7 @@ in
             name = "JetBrainsMono";
             size = if !isDarwin then 10 else 12;
         };
-        themeFile = "Gruvbox Dark";
+        themeFile = "gruvbox-dark";
         extraConfig = ''
             font_family JetBrainsMono Nerd Font Mono
             disable_ligatures always
