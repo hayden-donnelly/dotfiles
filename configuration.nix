@@ -62,7 +62,7 @@
     };
 
     services = {
-        pulseaudio.enable = false;
+        #pulseaudio.enable = false;
         # Image thumbnails for Thunar.
         tumbler.enable = true;
         # Other functionality for Thunar.
