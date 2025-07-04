@@ -59,9 +59,14 @@
             wallhack = "feh --bg-fill ~/.wallpaper.png";
         };
         thunar.enable = true;
+        gnupg.agent = {
+           enable = true;
+           enableSSHSupport = true;
+        };
     };
 
     services = {
+        pcscd.enable = true;
         pulseaudio.enable = false;
         # Image thumbnails for Thunar.
         tumbler.enable = true;
@@ -125,6 +130,7 @@
         extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
         packages = with pkgs; [
             # General.
+            pinentry-curses
             firefox
             google-chrome
             xclip
