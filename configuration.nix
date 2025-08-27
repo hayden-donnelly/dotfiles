@@ -156,6 +156,7 @@
             # Gaming.
             ppsspp
             # Development.
+            qemu
             chromium
             chromedriver
             (python311.withPackages (ps: with ps; [
